@@ -13,7 +13,7 @@ function GunProxy(opts) {
     // initialize to receive back the proxy object for a specific configuration
     proxy.initialize = function (config) {
 
-        const trystero_room = joinRoom({ appId: config.appId, relayUrls: config.relayUrls }, config.roomName)
+        const trystero_room = joinRoom({ appId: config.appId, relayUrls: config.relayUrls, session: config.session }, config.roomName)
         trystero_room.onPeerJoin(id => console.log(`Trystero ID: ${id} joined`))
         trystero_room.onPeerLeave(id => console.log(`Trystero ID: ${id} left`))
         const [sendMsg, onMsg] = trystero_room.makeAction('gun-protocol')
