@@ -2,5 +2,5 @@
     "infoHashHex": "3665367962366f34703164316e32353666357733",
     "appId": "gundb_torrent_signalling_test",
     "roomName": "test",
-    "trackerUrls":["wss://tracker.com"]
+    "relayUrls":["wss://tracker.com"]
 }

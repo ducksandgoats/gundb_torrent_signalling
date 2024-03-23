@@ -22,7 +22,7 @@
     "parcel": "^2.11.0",
     "pmtiles": "^2.11.0",
     "protomaps-leaflet": "^1.24.2",
-    "trystero": "^0.16.0",
+    "trystero": "github:ducksandgoats/trystero",
     "van-cone": "^0.0.7",
     "vanjs-core": "^1.2.8",
     "vanjs-ext": "^0.2.0"
