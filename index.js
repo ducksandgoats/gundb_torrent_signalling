@@ -103,6 +103,8 @@ export default function(init, config){
     // pass websocket as custom websocket to gun instance
     // make sure localStorage / indexedDB is on
     const gun = init ? init.opt({...config, WebSocket: WebSocketProxy}) : Gun({ ...config, WebSocket: WebSocketProxy })
-    proxy.attachGun(gun)
+    setTimeout(() => {
+        proxy.attachGun(gun)
+    }, config.attach || 3000)
     return gun
 }
