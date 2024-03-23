@@ -1,13 +1,14 @@
 // MIT (C) Dletta 2021
 // https://github.com/Dletta/dht-proxy/blob/main/websocketproxy.js
 
-import { joinRoom } from 'trystero';
-const debug = true
+import Gun from 'gun'
+import { joinRoom } from 'trystero'
+// const debug = true
 
+function GunProxy(opts) {
+    const debug = opts.debug
 
-export const GunProxy = function () {
     const proxy = { senders: [], listeners: [], shutdowns: [] };
-
 
     // initialize to receive back the proxy object for a specific configuration
     proxy.initialize = function (config) {
@@ -64,7 +65,6 @@ export const GunProxy = function () {
 
     };
 
-
     proxy.addSender = function (sender) {
         proxy.senders.push(sender)
     };
@@ -93,4 +93,16 @@ export const GunProxy = function () {
     };
 
     return proxy
+}
+
+export default function(init, config){
+    // instantiate module
+    const proxy = GunProxy(config)
+    // configure websocket
+    const WebSocketProxy = proxy.initialize(config)
+    // pass websocket as custom websocket to gun instance
+    // make sure localStorage / indexedDB is on
+    const gun = init ? init.opt({...config, WebSocket: WebSocketProxy}) : Gun({ ...config, WebSocket: WebSocketProxy })
+    proxy.attachGun(gun)
+    return gun
 }
